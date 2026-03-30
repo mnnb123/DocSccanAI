@@ -120,7 +120,13 @@ final class ScanService: NSObject {
 
     /// Import a PDF from a file URL (Files app).
     func importPDF(from sourceURL: URL) throws -> URL {
-        let fileName = "\(UUID().uuidString).pdf"
+        try importFile(from: sourceURL)
+    }
+
+    /// Import any file (PDF or image) from URL to app sandbox.
+    func importFile(from sourceURL: URL) throws -> URL {
+        let fileExtension = sourceURL.pathExtension.isEmpty ? "pdf" : sourceURL.pathExtension
+        let fileName = "\(UUID().uuidString).\(fileExtension)"
         let destURL = pdfDirectory.appendingPathComponent(fileName)
 
         if sourceURL.startAccessingSecurityScopedResource() {
