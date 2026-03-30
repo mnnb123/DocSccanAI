@@ -139,7 +139,6 @@ final class AnnotationService {
         scale: CGFloat = 1.0,
         on page: PDFPage
     ) -> PDFAnnotation {
-        let drawingImage = drawing.image(from: drawing.bounds, scale: scale)
         let size = CGSize(
             width: min(drawing.bounds.width, 250),
             height: min(drawing.bounds.height, 100)

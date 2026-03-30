@@ -225,13 +225,15 @@ final class DocumentDetailViewController: UIViewController {
     }
 
     private func createQuickActionButton(title: String, icon: String, action: Selector) -> UIButton {
-        let btn = UIButton(type: .system)
-        btn.setTitle(" \(title)", for: .normal)
-        btn.setImage(UIImage(systemName: icon), for: .normal)
-        btn.titleLabel?.font = .systemFont(ofSize: 13)
-        btn.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.1)
-        btn.layer.cornerRadius = 16
-        btn.contentEdgeInsets = UIEdgeInsets(top: 6, left: 12, bottom: 6, right: 12)
+        var config = UIButton.Configuration.filled()
+        config.title = title
+        config.image = UIImage(systemName: icon)
+        config.imagePadding = 4
+        config.baseBackgroundColor = UIColor.systemBlue.withAlphaComponent(0.1)
+        config.baseForegroundColor = .systemBlue
+        config.cornerStyle = .capsule
+        config.contentInsets = NSDirectionalEdgeInsets(top: 6, leading: 12, bottom: 6, trailing: 12)
+        let btn = UIButton(configuration: config)
         btn.addTarget(self, action: action, for: .touchUpInside)
         return btn
     }

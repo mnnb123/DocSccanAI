@@ -225,7 +225,7 @@ final class LibraryViewController: UIViewController {
             tf.placeholder = "Tên thư mục"
         }
         alert.addAction(UIAlertAction(title: "Hủy", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Tạo", style: .default) { [weak self] _ in
+        alert.addAction(UIAlertAction(title: "Tạo", style: .default) { _ in
             guard let name = alert.textFields?.first?.text, !name.isEmpty else { return }
             let ctx = AppDelegate.shared.managedObjectContext
             let folder = CDFolder(context: ctx)

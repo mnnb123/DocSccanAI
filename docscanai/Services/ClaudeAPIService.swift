@@ -34,10 +34,10 @@ actor ClaudeAPIService {
         }
     }
 
-    private var config: Config
+    private let config: Config
 
-    init(config: Config = .placeholder) {
-        self.config = config
+    init(config: Config? = nil) {
+        self.config = config ?? .placeholder
     }
 
     // MARK: - Chat Completion
@@ -51,7 +51,7 @@ actor ClaudeAPIService {
         let model: String
         let max_tokens: Int
         let messages: [Message]
-        let stream: Bool = false
+        let stream: Bool
     }
 
     struct ChatResponse: Codable {
@@ -100,7 +100,7 @@ actor ClaudeAPIService {
         request.setValue("application/json", forHTTPHeaderField: "anthropic-version")
         request.setValue("2023-06-01", forHTTPHeaderField: "anthropic-version")
 
-        let body = ChatRequest(model: config.model, max_tokens: config.maxTokens, messages: messages)
+        let body = ChatRequest(model: config.model, max_tokens: config.maxTokens, messages: messages, stream: false)
         request.httpBody = try JSONEncoder().encode(body)
 
         let (data, response) = try await URLSession.shared.data(for: request)
