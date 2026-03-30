@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="22F82" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="CDDocument" representedClassName="CDDocument" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="extractedDataJSON" optional="YES" attributeType="String"/>
+        <attribute name="fullText" optional="YES" attributeType="String"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isFavorite" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isProcessed" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="isSecured" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="lastOpenedAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="pageCount" attributeType="Integer 32" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="pdfFileName" attributeType="String"/>
+        <attribute name="thumbnailFileName" optional="YES" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <relationship name="comments" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDDocumentComment" inverseName="document" inverseEntity="CDDocumentComment"/>
+        <relationship name="folder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDFolder" inverseName="documents" inverseEntity="CDFolder"/>
+        <relationship name="tags" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDTag" inverseName="documents" inverseEntity="CDTag"/>
+        <relationship name="versions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDDocumentVersion" inverseName="document" inverseEntity="CDDocumentVersion"/>
+    </entity>
+    <entity name="CDFolder" representedClassName="CDFolder" syncable="YES" codeGenerationType="class">
+        <attribute name="colorHex" attributeType="String" defaultValueString="#007AFF"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="childFolders" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CDFolder" inverseName="parentFolder" inverseEntity="CDFolder"/>
+        <relationship name="documents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDDocument" inverseName="folder" inverseEntity="CDDocument"/>
+        <relationship name="parentFolder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDFolder" inverseName="childFolders" inverseEntity="CDFolder"/>
+    </entity>
+    <entity name="CDTag" representedClassName="CDTag" syncable="YES" codeGenerationType="class">
+        <attribute name="colorHex" attributeType="String" defaultValueString="#FF9500"/>
+        <attribute name="documentType" attributeType="String" defaultValueString="other"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String"/>
+        <relationship name="documents" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDDocument" inverseName="tags" inverseEntity="CDDocument"/>
+    </entity>
+    <entity name="CDChatMessage" representedClassName="CDChatMessage" syncable="YES" codeGenerationType="class">
+        <attribute name="content" attributeType="String"/>
+        <attribute name="documentId" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="pageReferencesJSON" optional="YES" attributeType="String"/>
+        <attribute name="role" attributeType="String"/>
+        <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="CDDocumentVersion" representedClassName="CDDocumentVersion" syncable="YES" codeGenerationType="class">
+        <attribute name="changeDescription" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="documentId" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="snapshotFileName" attributeType="String"/>
+        <attribute name="versionNumber" attributeType="Integer 32" defaultValueString="1" usesScalarValueType="YES"/>
+        <relationship name="document" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDDocument" inverseName="versions" inverseEntity="CDDocument"/>
+    </entity>
+    <entity name="CDDocumentComment" representedClassName="CDDocumentComment" syncable="YES" codeGenerationType="class">
+        <attribute name="authorName" attributeType="String" defaultValueString="Me"/>
+        <attribute name="documentId" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="isResolved" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="pageNumber" attributeType="Integer 32" defaultValueString="1" usesScalarValueType="YES"/>
+        <attribute name="text" attributeType="String"/>
+        <attribute name="timestamp" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="document" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDDocument" inverseName="comments" inverseEntity="CDDocument"/>
+    </entity>
+</model>
