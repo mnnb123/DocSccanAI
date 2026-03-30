@@ -14,6 +14,8 @@
 		2D6AAD8E0127374CDE613C46 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A6C56B82005C943A2F7E77 /* LibraryViewController.swift */; };
 		4F0A0169949130CB7B6CD586 /* ClaudeAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4872D09DBBB5C5B4A0BDB4E /* ClaudeAPIService.swift */; };
 		562C3D3E0DF441BFD7E9EF6B /* ScanService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA01AF3076A9BEF16B436C2 /* ScanService.swift */; };
+		73E5FF1AB7CBFC41E0B7DC38 /* AIProcessingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34BA686FB4B7ADBBAEF96A9 /* AIProcessingViewController.swift */; };
+		74291EF71EA150C275A88BEE /* OCRResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF4E12176F4A25ABF43D105 /* OCRResult.swift */; };
 		7D3324BF30976A098352C927 /* DocumentModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950758A248280F58921DB129 /* DocumentModels.swift */; };
 		80E5668523E1C415BFDA44C7 /* OCRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B032F5DE7F73060293C8C2B /* OCRService.swift */; };
 		9BCBFC0DCD96C1A6AA891705 /* DocScanAI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 256814D5E20B9F3B4360D5C3 /* DocScanAI.xcdatamodeld */; };
@@ -22,6 +24,7 @@
 		B914D9AE4C29CC44BB48168C /* BiometricLockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62861E91A4A8AD6AFE9870B0 /* BiometricLockManager.swift */; };
 		C26FE1C26B4CBA2CB3FC8F46 /* DocumentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C813EE87629F6C24770E31A /* DocumentDetailViewController.swift */; };
 		C8A668045EA7A132ECC5FBDD /* ScanPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E560225FF46C1A7F6C762D1 /* ScanPreviewViewController.swift */; };
+		D9C539B17BB2F5826A50FA3E /* DocumentAIProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8D51EDA4289C6F2068DB0 /* DocumentAIProcessor.swift */; };
 		E4194AF7833778B6E555E4EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC87AE1378B7F11D15116B35 /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +41,7 @@
 /* Begin PBXFileReference section */
 		03D6B4F4222B424B7C1147BF /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		1C1D796250C9B39A07CF8BC4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1DF4E12176F4A25ABF43D105 /* OCRResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRResult.swift; sourceTree = "<group>"; };
 		27A6C56B82005C943A2F7E77 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		295FC8A69C67265487A806EB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2FD25A43F6FB94DED8869FD8 /* DocScanAIWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocScanAIWidget.swift; sourceTree = "<group>"; };
@@ -51,8 +55,10 @@
 		8B032F5DE7F73060293C8C2B /* OCRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRService.swift; sourceTree = "<group>"; };
 		950758A248280F58921DB129 /* DocumentModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentModels.swift; sourceTree = "<group>"; };
 		96085602DE00794B07DFC577 /* DocScanAIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocScanAIApp.swift; sourceTree = "<group>"; };
+		9AD8D51EDA4289C6F2068DB0 /* DocumentAIProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentAIProcessor.swift; sourceTree = "<group>"; };
 		9EF9F4C133DA497EE96FEC22 /* DocScanAIWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = DocScanAIWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A4FAE5DC90704CDE86F44E /* DocScanAIWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DocScanAIWidget.entitlements; sourceTree = "<group>"; };
+		B34BA686FB4B7ADBBAEF96A9 /* AIProcessingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIProcessingViewController.swift; sourceTree = "<group>"; };
 		B4872D09DBBB5C5B4A0BDB4E /* ClaudeAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeAPIService.swift; sourceTree = "<group>"; };
 		C8F4F341CCF70B732740ABDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		EA6AA76981AE1CFE4FE0157D /* DocScanAI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DocScanAI.xcdatamodel; sourceTree = "<group>"; };
@@ -65,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				76AC2386022A8AF346A1DC89 /* Components */,
+				B34BA686FB4B7ADBBAEF96A9 /* AIProcessingViewController.swift */,
 				1C1D796250C9B39A07CF8BC4 /* ContentView.swift */,
 				3C813EE87629F6C24770E31A /* DocumentDetailViewController.swift */,
 				27A6C56B82005C943A2F7E77 /* LibraryViewController.swift */,
@@ -80,6 +87,7 @@
 			children = (
 				62861E91A4A8AD6AFE9870B0 /* BiometricLockManager.swift */,
 				B4872D09DBBB5C5B4A0BDB4E /* ClaudeAPIService.swift */,
+				9AD8D51EDA4289C6F2068DB0 /* DocumentAIProcessor.swift */,
 				03D6B4F4222B424B7C1147BF /* HapticManager.swift */,
 				8B032F5DE7F73060293C8C2B /* OCRService.swift */,
 				4FA01AF3076A9BEF16B436C2 /* ScanService.swift */,
@@ -91,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				950758A248280F58921DB129 /* DocumentModels.swift */,
+				1DF4E12176F4A25ABF43D105 /* OCRResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -229,15 +238,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73E5FF1AB7CBFC41E0B7DC38 /* AIProcessingViewController.swift in Sources */,
 				B914D9AE4C29CC44BB48168C /* BiometricLockManager.swift in Sources */,
 				4F0A0169949130CB7B6CD586 /* ClaudeAPIService.swift in Sources */,
 				12C0AEA6289BDD4212CCEBF9 /* ContentView.swift in Sources */,
 				9BCBFC0DCD96C1A6AA891705 /* DocScanAI.xcdatamodeld in Sources */,
 				0A8DFD555138586953C3D048 /* DocScanAIApp.swift in Sources */,
+				D9C539B17BB2F5826A50FA3E /* DocumentAIProcessor.swift in Sources */,
 				C26FE1C26B4CBA2CB3FC8F46 /* DocumentDetailViewController.swift in Sources */,
 				7D3324BF30976A098352C927 /* DocumentModels.swift in Sources */,
 				ABCA2F6E6DAA77F0846E5521 /* HapticManager.swift in Sources */,
 				2D6AAD8E0127374CDE613C46 /* LibraryViewController.swift in Sources */,
+				74291EF71EA150C275A88BEE /* OCRResult.swift in Sources */,
 				80E5668523E1C415BFDA44C7 /* OCRService.swift in Sources */,
 				C8A668045EA7A132ECC5FBDD /* ScanPreviewViewController.swift in Sources */,
 				562C3D3E0DF441BFD7E9EF6B /* ScanService.swift in Sources */,

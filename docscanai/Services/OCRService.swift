@@ -1,6 +1,7 @@
 import Foundation
 import Vision
 import UIKit
+import NaturalLanguage
 
 /// On-device OCR using Vision framework.
 /// Supports Vietnamese, English, and Chinese text recognition.
@@ -20,17 +21,8 @@ actor OCRService {
         }
     }
 
-    struct OCRResult {
-        let fullText: String
-        let textBlocks: [TextBlock]
-
-        struct TextBlock {
-            let text: String
-            let boundingBox: CGRect
-            let confidence: Float
-            let pageNumber: Int
-        }
-    }
+    /// Supported languages for OCR.
+    static let supportedLanguages = ["vi", "en", "zh-Hans", "zh-Hant", "ja", "ko"]
 
     /// Recognize text from a UIImage using Vision on-device OCR.
     func recognizeText(from image: UIImage, pageNumber: Int = 1) async throws -> OCRResult {
@@ -71,7 +63,7 @@ actor OCRService {
 
             request.recognitionLevel = .accurate
             request.usesLanguageCorrection = true
-            request.recognitionLanguages = ["vi", "en", "zh-Hans"]
+            request.recognitionLanguages = Self.supportedLanguages
             request.automaticallyDetectsLanguage = true
 
             let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
@@ -99,5 +91,12 @@ actor OCRService {
             }
             return results
         }
+    }
+
+    /// Estimate the language of the given text.
+    func detectLanguage(of text: String) -> String? {
+        let recognizer = NLLanguageRecognizer()
+        recognizer.processString(text)
+        return recognizer.dominantLanguage?.rawValue
     }
 }

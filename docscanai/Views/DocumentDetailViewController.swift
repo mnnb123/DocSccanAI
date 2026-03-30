@@ -402,45 +402,10 @@ final class DocumentDetailViewController: UIViewController {
         chatTableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
     }
 
-    private func processWithAI() {
-        guard !(document.isProcessed) else { return }
-
-        let alert = UIAlertController(
-            title: "Xử lý AI",
-            message: "Đang trích xuất văn bản từ tài liệu...",
-            preferredStyle: .alert
-        )
-        present(alert, animated: true)
-
-        Task {
-            let ocrService = OCRService()
-            var allText = ""
-
-            if let pdfDoc = self.pdfView.document {
-                for i in 0..<pdfDoc.pageCount {
-                    guard let page = pdfDoc.page(at: i) else { continue }
-                    let img = page.thumbnail(of: CGSize(width: 1024, height: 1400), for: .mediaBox)
-                    if img.size.width > 0 && img.size.height > 0 {
-                        if let result = try? await ocrService.recognizeText(from: img, pageNumber: i + 1) {
-                            allText += result.fullText + "\n"
-                        }
-                    }
-                }
-            }
-
-            await MainActor.run {
-                document.fullText = allText
-                document.isProcessed = true
-                try? AppDelegate.shared.managedObjectContext.save()
-
-                alert.dismiss(animated: true) {
-                    HapticManager.shared.success()
-                    let ok = UIAlertController(title: "Thành công", message: "Đã trích xuất văn bản. Bây giờ bạn có thể hỏi AI!", preferredStyle: .alert)
-                    ok.addAction(UIAlertAction(title: "OK", style: .default))
-                    self.present(ok, animated: true)
-                }
-            }
-        }
+    @objc private func processWithAI() {
+        let processorVC = AIProcessingViewController(document: document)
+        let nav = UINavigationController(rootViewController: processorVC)
+        present(nav, animated: true)
     }
 }
 

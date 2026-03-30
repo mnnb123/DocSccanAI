@@ -125,24 +125,8 @@ actor ClaudeAPIService {
 
     // MARK: - Structured Extraction
 
-    struct ExtractedDocumentData: Codable {
-        let invoiceNumber: String?
-        let dates: [String]
-        let amounts: [String]
-        let names: [String]
-        let summary: String
-
-        enum CodingKeys: String, CodingKey {
-            case invoiceNumber = "invoice_number"
-            case dates
-            case amounts
-            case names
-            case summary
-        }
-    }
-
     /// Extract structured data from OCR text using Claude.
-    func extractStructuredData(ocrText: String) async throws -> ExtractedDocumentData {
+    func extractStructuredData(ocrText: String) async throws -> ExtractedFields {
         let systemPrompt = """
         Bạn là trợ lý AI chuyên trích xuất dữ liệu từ tài liệu.
         Phân tích văn bản OCR được cung cấp và trích xuất các trường có cấu trúc.
@@ -151,7 +135,7 @@ actor ClaudeAPIService {
         Chỉ trả về JSON, không giải thích gì thêm.
         """
 
-        let userMessage = Message(role: "user", content: "Văn bản OCR:\n\(ocrText.prefix(3000))")
+        let userMessage = Message(role: "user", content: "Văn bản OCR:\n\(String(ocrText.prefix(3000)))")
         let result = try await chat(messages: [
             Message(role: "system", content: systemPrompt),
             userMessage
@@ -163,7 +147,7 @@ actor ClaudeAPIService {
         }
 
         let jsonString = String(result[jsonStart...jsonEnd])
-        return try JSONDecoder().decode(ExtractedDocumentData.self, from: Data(jsonString.utf8))
+        return try JSONDecoder().decode(ExtractedFields.self, from: Data(jsonString.utf8))
     }
 
     // MARK: - Summarize

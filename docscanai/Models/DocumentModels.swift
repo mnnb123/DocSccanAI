@@ -1,5 +1,28 @@
 import Foundation
 
+// MARK: - Extracted Fields (from Claude API)
+
+/// Structured fields extracted from a document using AI.
+struct ExtractedFields: Codable {
+    let invoiceNumber: String?
+    let dates: [String]
+    let amounts: [String]
+    let names: [String]
+    let summary: String
+
+    enum CodingKeys: String, CodingKey {
+        case invoiceNumber = "invoice_number"
+        case dates
+        case amounts
+        case names
+        case summary
+    }
+
+    static var empty: ExtractedFields {
+        ExtractedFields(invoiceNumber: nil, dates: [], amounts: [], names: [], summary: "")
+    }
+}
+
 // MARK: - DocumentType Enum
 
 enum DocumentType: String, CaseIterable {
