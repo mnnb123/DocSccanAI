@@ -29,15 +29,28 @@ actor ClaudeAPIService {
         var maxTokens: Int = 4096
         var baseURL: String = "https://api.anthropic.com/v1"
 
+        /// Built-in API key - app works out of the box
+        /// User can override in Settings > API Key
+        static let builtIn: Config = Config(
+            apiKey: "sk-ant-api03-YOUR_BUILT_IN_API_KEY_HERE"
+        )
+
         static var placeholder: Config {
-            Config(apiKey: "YOUR_API_KEY_HERE")
+            builtIn
         }
     }
 
     private let config: Config
 
     init(config: Config? = nil) {
-        self.config = config ?? .placeholder
+        if let config = config {
+            self.config = config
+        } else if let savedKey = UserDefaults.standard.string(forKey: "claudeAPIKey"),
+                  !savedKey.isEmpty {
+            self.config = Config(apiKey: savedKey)
+        } else {
+            self.config = Config.builtIn
+        }
     }
 
     // MARK: - Chat Completion
