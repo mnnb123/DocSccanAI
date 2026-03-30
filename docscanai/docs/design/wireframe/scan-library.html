@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DocScan AI — Wireframes</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+    background: #1C1C1E;
+    color: #fff;
+    padding: 40px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 14px;
+    color: #8E8E93;
+    margin-bottom: 40px;
+    font-weight: 400;
+  }
+
+  .screens-row {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .screen-label {
+    font-size: 12px;
+    color: #8E8E93;
+    margin-bottom: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  .phone-frame {
+    width: 275px;
+    height: 592px;
+    background: #000;
+    border-radius: 40px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
+  }
+
+  .phone-notch {
+    width: 100px;
+    height: 28px;
+    background: #000;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 0 0 18px 18px;
+    z-index: 10;
+  }
+
+  .status-bar {
+    height: 44px;
+    padding: 12px 24px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .screen-content {
+    height: calc(100% - 44px);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* === SCAN SCREEN === */
+  .scan-screen {
+    background: linear-gradient(180deg, #F2F2F7 0%, #FFFFFF 100%);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .scan-nav {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    font-weight: 600;
+    color: #000;
+    padding-top: 4px;
+  }
+
+  .scan-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 24px;
+  }
+
+  .scan-icon {
+    width: 80px;
+    height: 80px;
+    background: #E5E5EA;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  .scan-icon svg { color: #8E8E93; }
+
+  .scan-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .scan-subtitle {
+    font-size: 14px;
+    color: #8E8E93;
+    text-align: center;
+    line-height: 1.4;
+    margin-bottom: 48px;
+  }
+
+  .scan-buttons {
+    position: absolute;
+    bottom: 32px;
+    left: 24px;
+    right: 24px;
+  }
+
+  .btn-primary {
+    width: 100%;
+    height: 50px;
+    background: #007AFF;
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .btn-secondary {
+    width: 100%;
+    height: 50px;
+    background: #E5E5EA;
+    border: none;
+    border-radius: 12px;
+    color: #000;
+    font-size: 17px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  /* === LIBRARY SCREEN === */
+  .library-screen {
+    background: #F2F2F7;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .library-nav {
+    height: 52px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 12px;
+    font-size: 34px;
+    font-weight: 700;
+    color: #000;
+  }
+
+  .seg-control {
+    display: flex;
+    gap: 0;
+    margin: 8px 16px;
+    background: #E5E5EA;
+    border-radius: 8px;
+    padding: 2px;
+    height: 32px;
+  }
+
+  .seg-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: #8E8E93;
+    border-radius: 6px;
+  }
+
+  .seg-item.active {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+
+  .doc-grid {
+    padding: 8px 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    overflow-y: auto;
+    flex: 1;
+  }
+
+  .doc-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  }
+
+  .doc-thumb {
+    aspect-ratio: 3/4;
+    background: #F2F2F7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .doc-thumb svg { color: #D1D1D6; }
+
+  .doc-thumb-star {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .doc-thumb-star svg { color: #FFD60A; width: 12px; height: 12px; }
+
+  .doc-meta {
+    padding: 10px 12px;
+  }
+
+  .doc-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 3px;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .doc-info {
+    font-size: 11px;
+    color: #8E8E93;
+  }
+
+  /* === DOCUMENT DETAIL === */
+  .detail-screen {
+    background: #fff;
+    display: flex;
+    height: 100%;
+  }
+
+  .pdf-area {
+    flex: 1;
+    background: #E5E5EA;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .pdf-page {
+    width: 60%;
+    height: 85%;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .pdf-page svg { color: #D1D1D6; margin-bottom: 8px; }
+  .pdf-page-text { font-size: 12px; color: #8E8E93; }
+
+  .pdf-toolbar {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .toolbar-btn {
+    width: 36px;
+    height: 36px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+  }
+
+  .toolbar-btn svg { color: #3C3C43; width: 18px; height: 18px; }
+
+  .toolbar-right { display: flex; gap: 8px; }
+
+  /* === CHAT PANEL === */
+  .chat-panel {
+    width: 40%;
+    border-left: 1px solid #E5E5EA;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+  }
+
+  .chat-header {
+    height: 50px;
+    background: #F2F2F7;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 8px;
+    border-bottom: 1px solid #E5E5EA;
+  }
+
+  .chat-header svg { color: #007AFF; width: 18px; }
+  .chat-header span { font-size: 16px; font-weight: 600; color: #000; }
+
+  .chat-messages {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    overflow-y: auto;
+  }
+
+  .msg-user {
+    align-self: flex-end;
+    max-width: 80%;
+  }
+
+  .msg-ai {
+    align-self: flex-start;
+    max-width: 80%;
+  }
+
+  .msg-bubble {
+    padding: 10px 14px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .msg-user .msg-bubble {
+    background: #007AFF;
+    color: #fff;
+    border-bottom-right-radius: 4px;
+  }
+
+  .msg-ai .msg-bubble {
+    background: #E5E5EA;
+    color: #000;
+    border-bottom-left-radius: 4px;
+  }
+
+  .msg-time {
+    font-size: 10px;
+    color: #8E8E93;
+    margin-top: 3px;
+    text-align: right;
+  }
+
+  .msg-ai .msg-time { text-align: left; }
+
+  .chat-actions {
+    height: 44px;
+    background: #F2F2F7;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    gap: 8px;
+    border-top: 1px solid #E5E5EA;
+  }
+
+  .action-pill {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(0,122,255,0.1);
+    color: #007AFF;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 16px;
+    border: none;
+  }
+
+  .action-pill svg { width: 13px; height: 13px; }
+
+  .chat-input {
+    height: 56px;
+    border-top: 1px solid #E5E5EA;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 8px;
+    background: #fff;
+  }
+
+  .input-field {
+    flex: 1;
+    height: 36px;
+    background: #F2F2F7;
+    border: none;
+    border-radius: 18px;
+    padding: 0 16px;
+    font-size: 15px;
+    outline: none;
+  }
+
+  .send-btn svg { color: #007AFF; width: 28px; height: 28px; }
+
+  /* === SETTINGS === */
+  .settings-screen {
+    background: #F2F2F7;
+    height: 100%;
+  }
+
+  .settings-nav {
+    height: 52px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 12px;
+    font-size: 34px;
+    font-weight: 700;
+    color: #000;
+  }
+
+  .settings-list {
+    padding: 0 16px;
+  }
+
+  .settings-section {
+    margin-bottom: 24px;
+  }
+
+  .settings-section-title {
+    font-size: 13px;
+    color: #8E8E93;
+    font-weight: 400;
+    padding: 0 16px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .settings-group {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .settings-row {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #E5E5EA;
+  }
+
+  .settings-row:last-child { border-bottom: none; }
+
+  .settings-row svg { width: 22px; height: 22px; color: #007AFF; margin-right: 12px; }
+
+  .settings-row-label { flex: 1; font-size: 17px; color: #000; }
+
+  .settings-row-value { font-size: 17px; color: #8E8E93; }
+
+  .toggle {
+    width: 51px;
+    height: 31px;
+    background: #E5E5EA;
+    border-radius: 16px;
+    position: relative;
+    border: none;
+  }
+
+  .toggle::after {
+    content: '';
+    width: 27px;
+    height: 27px;
+    background: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+
+  .toggle.active {
+    background: #34C759;
+  }
+
+  .toggle.active::after {
+    left: 22px;
+  }
+
+  .section-break {
+    width: 275px;
+    height: 1px;
+    background: #38383A;
+    margin: 24px auto;
+    opacity: 0.3;
+  }
+
+  /* Annotations toolbar */
+  .ann-toolbar {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    background: rgba(255,255,255,0.95);
+    padding: 6px 12px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+
+  .ann-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+  }
+
+  .ann-btn.active {
+    background: #007AFF;
+  }
+
+  .ann-btn.active svg { color: #fff; }
+  .ann-btn svg { color: #3C3C43; width: 18px; height: 18px; }
+</style>
+</head>
+<body>
+
+<h1>DocScan AI — Wireframes</h1>
+<h2>iOS 16.4+ | UIKit + SwiftUI | SF Pro Design System</h2>
+
+<!-- Row 1: Scan + Library -->
+<div class="screens-row">
+
+  <!-- SCAN SCREEN -->
+  <div class="screen">
+    <div class="screen-label">1. Scan (Home)</div>
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="status-bar">
+        <span>9:41</span>
+        <span>📶 📡 🔋</span>
+      </div>
+      <div class="screen-content">
+        <div class="scan-screen">
+          <div class="scan-nav">DocScan AI</div>
+          <div class="scan-content">
+            <div class="scan-icon">
+              <svg width="44" height="44" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path d="M9 2H4a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5"/>
+                <path d="M9 2a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v5H9V2z"/>
+                <path d="M14 12h6M17 9v6"/>
+              </svg>
+            </div>
+            <div class="scan-title">Quét tài liệu</div>
+            <div class="scan-subtitle">Chụp ảnh tài liệu bằng camera<br>hoặc nhập từ thư viện ảnh</div>
+          </div>
+          <div class="scan-buttons">
+            <button class="btn-primary">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              Quét ngay
+            </button>
+            <button class="btn-secondary">
+              <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+              Nhập từ Photos
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIBRARY SCREEN -->
+  <div class="screen">
+    <div class="screen-label">2. Library (Grid)</div>
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="status-bar">
+        <span>9:41</span>
+        <span>📶 📡 🔋</span>
+      </div>
+      <div class="screen-content">
+        <div class="library-screen">
+          <div class="library-nav">Thư viện</div>
+          <div class="seg-control">
+            <div class="seg-item active">Lưới</div>
+            <div class="seg-item">Danh sách</div>
+          </div>
+          <div class="doc-grid">
+            <!-- Doc Card 1 -->
+            <div class="doc-card">
+              <div class="doc-thumb">
+                <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8M16 17H8M10 9H8"/></svg>
+                <div class="doc-thumb-star">
+                  <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+              </div>
+              <div class="doc-meta">
+                <div class="doc-title">Hóa đơn tháng 3</div>
+                <div class="doc-info">2 trang • 28 Thg 3</div>
+              </div>
+            </div>
+            <!-- Doc Card 2 -->
+            <div class="doc-card">
+              <div class="doc-thumb">
+                <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+              </div>
+              <div class="doc-meta">
+                <div class="doc-title">Hợp đồng thuê nhà</div>
+                <div class="doc-info">5 trang • 25 Thg 3</div>
+              </div>
+            </div>
+            <!-- Doc Card 3 -->
+            <div class="doc-card">
+              <div class="doc-thumb">
+                <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+              </div>
+              <div class="doc-meta">
+                <div class="doc-title">Bài giảng CNTT</div>
+                <div class="doc-info">12 trang • 20 Thg 3</div>
+              </div>
+            </div>
+            <!-- Doc Card 4 -->
+            <div class="doc-card">
+              <div class="doc-thumb">
+                <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+                <div class="doc-thumb-star">
+                  <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                </div>
+              </div>
+              <div class="doc-meta">
+                <div class="doc-title">Phiếu giao hàng</div>
+                <div class="doc-info">1 trang • 18 Thg 3</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Row 2: Document Detail + Chat -->
+<div class="screens-row">
+
+  <!-- DOCUMENT DETAIL -->
+  <div class="screen">
+    <div class="screen-label">3. Document Detail + Chat</div>
+    <div class="phone-frame" style="width: 380px;">
+      <div class="phone-notch"></div>
+      <div class="status-bar">
+        <span>9:41</span>
+        <span>📶 📡 🔋</span>
+      </div>
+      <div class="screen-content">
+        <div class="detail-screen">
+          <!-- PDF Area -->
+          <div class="pdf-area">
+            <div class="pdf-toolbar">
+              <div class="toolbar-btn">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+              </div>
+              <div class="toolbar-right">
+                <div class="toolbar-btn">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                <div class="toolbar-btn">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+                </div>
+                <div class="toolbar-btn">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
+                </div>
+              </div>
+            </div>
+            <div class="pdf-page">
+              <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+              <div class="pdf-page-text">Trang 2 / 5</div>
+            </div>
+            <!-- Annotation toolbar -->
+            <div class="ann-toolbar">
+              <button class="ann-btn active">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m9 11-6 6v3h9l3-3"/><path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/></svg>
+              </button>
+              <button class="ann-btn">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3"/><line x1="4" y1="21" x2="20" y2="21"/></svg>
+              </button>
+              <button class="ann-btn">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+              </button>
+              <button class="ann-btn">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </button>
+            </div>
+          </div>
+          <!-- Chat Panel -->
+          <div class="chat-panel">
+            <div class="chat-header">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><circle cx="9" cy="10" r="1" fill="currentColor"/><circle cx="12" cy="10" r="1" fill="currentColor"/><circle cx="15" cy="10" r="1" fill="currentColor"/></svg>
+              <span>AI Chat</span>
+            </div>
+            <div class="chat-messages">
+              <div class="msg-ai">
+                <div class="msg-bubble">Xin chào! Tôi có thể giúp gì với tài liệu này?</div>
+                <div class="msg-time">9:41</div>
+              </div>
+              <div class="msg-user">
+                <div class="msg-bubble">Trích xuất tất cả số điện thoại trong tài liệu</div>
+                <div class="msg-time">9:41</div>
+              </div>
+              <div class="msg-ai">
+                <div class="msg-bubble">Đây là các số điện thoại tìm được:<br><br>📞 0912 345 678 (Trang 2)<br>📞 028 1234 5678 (Trang 3)<br>📞 0901 234 567 (Trang 4)</div>
+                <div class="msg-time">9:42</div>
+              </div>
+            </div>
+            <div class="chat-actions">
+              <button class="action-pill">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                Tóm tắt
+              </button>
+              <button class="action-pill">
+                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                Dịch
+              </button>
+            </div>
+            <div class="chat-input">
+              <input class="input-field" placeholder="Hỏi về tài liệu..." />
+              <button class="send-btn">
+                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 0l4-4H8l4 4zm0 0l4 4H8l4-4z" transform="rotate(90 12 12)"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SETTINGS -->
+  <div class="screen">
+    <div class="screen-label">4. Settings</div>
+    <div class="phone-frame">
+      <div class="phone-notch"></div>
+      <div class="status-bar">
+        <span>9:41</span>
+        <span>📶 📡 🔋</span>
+      </div>
+      <div class="screen-content">
+        <div class="settings-screen">
+          <div class="settings-nav">Cài đặt</div>
+          <div class="settings-list">
+            <div class="settings-section">
+              <div class="settings-section-title">AI Configuration</div>
+              <div class="settings-group">
+                <div class="settings-row">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+                  <span class="settings-row-label">API Key (Claude)</span>
+                  <span class="settings-row-value">Đã cài đặt ›</span>
+                </div>
+              </div>
+            </div>
+            <div class="settings-section">
+              <div class="settings-section-title">Bảo mật</div>
+              <div class="settings-group">
+                <div class="settings-row">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M12 14v4"/><rect x="4" y="14" width="16" height="8" rx="2"/></svg>
+                  <span class="settings-row-label">Face ID khóa ứng dụng</span>
+                  <button class="toggle"></button>
+                </div>
+              </div>
+            </div>
+            <div class="settings-section">
+              <div class="settings-section-title">Tùy chỉnh</div>
+              <div class="settings-group">
+                <div class="settings-row">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M2 12h2M6 12h2M10 12h2M14 12h2M18 12h2M22 12h2"/></svg>
+                  <span class="settings-row-label">Haptic Feedback</span>
+                  <button class="toggle active"></button>
+                </div>
+                <div class="settings-row">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                  <span class="settings-row-label">Ngôn ngữ OCR</span>
+                  <span class="settings-row-value">Tiếng Việt ›</span>
+                </div>
+              </div>
+            </div>
+            <div class="settings-section">
+              <div class="settings-section-title">Về ứng dụng</div>
+              <div class="settings-group">
+                <div class="settings-row">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                  <span class="settings-row-label">Phiên bản</span>
+                  <span class="settings-row-value">1.0.0</span>
+                </div>
+                <div class="settings-row">
+                  <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+                  <span class="settings-row-label">iOS tối thiểu</span>
+                  <span class="settings-row-value">iOS 16.4+</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
