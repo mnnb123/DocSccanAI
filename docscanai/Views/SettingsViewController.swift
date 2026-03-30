@@ -55,7 +55,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         var rows: [String] {
             switch self {
             case .subscription: return ["Quản lý gói Premium"]
-            case .aiConfig: return ["API Key (Claude)"]
+            case .aiConfig: return ["API Key (Claude)", "API Key (OpenAI)"]
             case .security: return ["Face ID khóa ứng dụng"]
             case .preferences: return ["Haptic Feedback", "Ngôn ngữ OCR"]
             case .about: return ["Phiên bản", "iOS tối thiểu"]
@@ -94,7 +94,11 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 
         case .aiConfig:
             cell.accessoryType = .disclosureIndicator
-            cell.detailTextLabel?.text = UserDefaults.standard.string(forKey: "claudeAPIKey")?.isEmpty == false ? "Đã cài đặt" : "Chưa cài đặt"
+            if indexPath.row == 0 {
+                cell.detailTextLabel?.text = UserDefaults.standard.string(forKey: "claudeAPIKey")?.isEmpty == false ? "Đã cài đặt" : "Đã cài đặt"
+            } else {
+                cell.detailTextLabel?.text = UserDefaults.standard.string(forKey: "openaiAPIKey")?.isEmpty == false ? "Đã cài đặt" : "Chưa cài đặt"
+            }
 
         case .security:
             let toggle = UISwitch()
@@ -136,7 +140,11 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         case .subscription:
             showSubscriptionVC()
         case .aiConfig:
-            showAPIKeyAlert()
+            if indexPath.row == 0 {
+                showAPIKeyAlert(provider: "Claude", keyName: "claudeAPIKey", url: "console.anthropic.com")
+            } else {
+                showAPIKeyAlert(provider: "OpenAI", keyName: "openaiAPIKey", url: "platform.openai.com")
+            }
         case .preferences:
             if indexPath.row == 1 {
                 showLanguagePicker()
@@ -146,17 +154,18 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
-    private func showAPIKeyAlert() {
-        let alert = UIAlertController(title: "Claude API Key", message: "Nhập API key từ console.anthropic.com", preferredStyle: .alert)
+    private func showAPIKeyAlert(provider: String, keyName: String, url: String) {
+        let placeholder = provider == "Claude" ? "sk-ant-..." : "sk-proj-..."
+        let alert = UIAlertController(title: "\(provider) API Key", message: "Nhập API key từ \(url)", preferredStyle: .alert)
         alert.addTextField { tf in
-            tf.placeholder = "sk-ant-..."
+            tf.placeholder = placeholder
             tf.isSecureTextEntry = true
-            tf.text = UserDefaults.standard.string(forKey: "claudeAPIKey")
+            tf.text = UserDefaults.standard.string(forKey: keyName)
         }
         alert.addAction(UIAlertAction(title: "Hủy", style: .cancel))
         alert.addAction(UIAlertAction(title: "Lưu", style: .default) { [weak self] _ in
             if let key = alert.textFields?.first?.text {
-                UserDefaults.standard.set(key, forKey: "claudeAPIKey")
+                UserDefaults.standard.set(key, forKey: keyName)
                 HapticManager.shared.success()
                 self?.tableView.reloadData()
             }
