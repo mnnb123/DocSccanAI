@@ -10,6 +10,7 @@
 		0A8DFD555138586953C3D048 /* DocScanAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96085602DE00794B07DFC577 /* DocScanAIApp.swift */; };
 		10E68EDDF4196F43085AD128 /* DocScanAIWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD25A43F6FB94DED8869FD8 /* DocScanAIWidget.swift */; };
 		12C0AEA6289BDD4212CCEBF9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1D796250C9B39A07CF8BC4 /* ContentView.swift */; };
+		18E55667EFE55EFF61F57A0D /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1F289AAB1FC75BA7A9C55A /* SubscriptionManager.swift */; };
 		2CF17D30D94F1F38B78AD214 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C77E3D704413BB0F4C6F430 /* ScanViewController.swift */; };
 		2D6AAD8E0127374CDE613C46 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A6C56B82005C943A2F7E77 /* LibraryViewController.swift */; };
 		34DD5EBE84B7CF348B902A98 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF20D4F93C470DC06A82C1C /* SignatureViewController.swift */; };
@@ -20,6 +21,7 @@
 		74291EF71EA150C275A88BEE /* OCRResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF4E12176F4A25ABF43D105 /* OCRResult.swift */; };
 		7D3324BF30976A098352C927 /* DocumentModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950758A248280F58921DB129 /* DocumentModels.swift */; };
 		80E5668523E1C415BFDA44C7 /* OCRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B032F5DE7F73060293C8C2B /* OCRService.swift */; };
+		9A693D924153A0CE755E0080 /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26663D14E1FFE8573D623404 /* SubscriptionViewController.swift */; };
 		9BCBFC0DCD96C1A6AA891705 /* DocScanAI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 256814D5E20B9F3B4360D5C3 /* DocScanAI.xcdatamodeld */; };
 		ABCA2F6E6DAA77F0846E5521 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6B4F4222B424B7C1147BF /* HapticManager.swift */; };
 		AEE4F607DA7055BE31F4ED39 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295FC8A69C67265487A806EB /* SettingsViewController.swift */; };
@@ -46,6 +48,7 @@
 		0BF20D4F93C470DC06A82C1C /* SignatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		1C1D796250C9B39A07CF8BC4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		1DF4E12176F4A25ABF43D105 /* OCRResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRResult.swift; sourceTree = "<group>"; };
+		26663D14E1FFE8573D623404 /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
 		27A6C56B82005C943A2F7E77 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		295FC8A69C67265487A806EB /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2FD25A43F6FB94DED8869FD8 /* DocScanAIWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocScanAIWidget.swift; sourceTree = "<group>"; };
@@ -67,6 +70,7 @@
 		B34BA686FB4B7ADBBAEF96A9 /* AIProcessingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIProcessingViewController.swift; sourceTree = "<group>"; };
 		B4872D09DBBB5C5B4A0BDB4E /* ClaudeAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeAPIService.swift; sourceTree = "<group>"; };
 		C8F4F341CCF70B732740ABDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DF1F289AAB1FC75BA7A9C55A /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		EA6AA76981AE1CFE4FE0157D /* DocScanAI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DocScanAI.xcdatamodel; sourceTree = "<group>"; };
 		EC5163E8AA337ACF50DD2755 /* DocScanAI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DocScanAI.entitlements; sourceTree = "<group>"; };
 		EC87AE1378B7F11D15116B35 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 				7C77E3D704413BB0F4C6F430 /* ScanViewController.swift */,
 				295FC8A69C67265487A806EB /* SettingsViewController.swift */,
 				0BF20D4F93C470DC06A82C1C /* SignatureViewController.swift */,
+				26663D14E1FFE8573D623404 /* SubscriptionViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -100,6 +105,7 @@
 				03D6B4F4222B424B7C1147BF /* HapticManager.swift */,
 				8B032F5DE7F73060293C8C2B /* OCRService.swift */,
 				4FA01AF3076A9BEF16B436C2 /* ScanService.swift */,
+				DF1F289AAB1FC75BA7A9C55A /* SubscriptionManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -268,6 +274,8 @@
 				E4194AF7833778B6E555E4EB /* SceneDelegate.swift in Sources */,
 				AEE4F607DA7055BE31F4ED39 /* SettingsViewController.swift in Sources */,
 				34DD5EBE84B7CF348B902A98 /* SignatureViewController.swift in Sources */,
+				18E55667EFE55EFF61F57A0D /* SubscriptionManager.swift in Sources */,
+				9A693D924153A0CE755E0080 /* SubscriptionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

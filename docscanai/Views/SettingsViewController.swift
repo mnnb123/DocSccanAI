@@ -1,4 +1,5 @@
 import UIKit
+import StoreKit
 
 /// Settings view controller.
 final class SettingsViewController: UIViewController {
@@ -35,6 +36,7 @@ final class SettingsViewController: UIViewController {
 extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 
     enum Section: Int, CaseIterable {
+        case subscription
         case aiConfig
         case security
         case preferences
@@ -42,6 +44,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 
         var title: String {
             switch self {
+            case .subscription: return "Gói Premium"
             case .aiConfig: return "AI Configuration"
             case .security: return "Bảo mật"
             case .preferences: return "Tùy chỉnh"
@@ -51,6 +54,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 
         var rows: [String] {
             switch self {
+            case .subscription: return ["Quản lý gói Premium"]
             case .aiConfig: return ["API Key (Claude)"]
             case .security: return ["Face ID khóa ứng dụng"]
             case .preferences: return ["Haptic Feedback", "Ngôn ngữ OCR"]
@@ -78,6 +82,16 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = section.rows[indexPath.row]
 
         switch section {
+        case .subscription:
+            if SubscriptionManager.shared.hasPremiumAccess() {
+                cell.detailTextLabel?.text = SubscriptionManager.shared.status.statusText
+                cell.accessoryType = .disclosureIndicator
+            } else {
+                cell.textLabel?.text = "Nâng cấp Premium"
+                cell.accessoryType = .disclosureIndicator
+                cell.textLabel?.textColor = .systemBlue
+            }
+
         case .aiConfig:
             cell.accessoryType = .disclosureIndicator
             cell.detailTextLabel?.text = UserDefaults.standard.string(forKey: "claudeAPIKey")?.isEmpty == false ? "Đã cài đặt" : "Chưa cài đặt"
@@ -119,6 +133,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         guard let section = Section(rawValue: indexPath.section) else { return }
 
         switch section {
+        case .subscription:
+            showSubscriptionVC()
         case .aiConfig:
             showAPIKeyAlert()
         case .preferences:
@@ -170,5 +186,15 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     @objc private func hapticToggled(_ sender: UISwitch) {
         UserDefaults.standard.set(sender.isOn, forKey: "hapticFeedbackEnabled")
         HapticManager.shared.lightImpact()
+    }
+
+    private func showSubscriptionVC() {
+        let paywall = SubscriptionViewController()
+        paywall.modalPresentationStyle = .pageSheet
+        if let sheet = paywall.sheetPresentationController {
+            sheet.detents = [.large()]
+            sheet.prefersGrabberVisible = true
+        }
+        present(paywall, animated: true)
     }
 }
