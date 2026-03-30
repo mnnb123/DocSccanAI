@@ -1,6 +1,7 @@
 import UIKit
 import PDFKit
 import CoreData
+import PencilKit
 
 /// Document detail view — PDF viewer + AI chat panel.
 final class DocumentDetailViewController: UIViewController {
@@ -17,9 +18,13 @@ final class DocumentDetailViewController: UIViewController {
     private var summaryButton: UIButton!
     private var translateButton: UIButton!
     private var toggleChatButton: UIButton!
+    private var annotateButton: UIBarButtonItem!
+    private var isAnnotationMode = false
 
     private var messages: [ChatMessageItem] = []
     private var isChatVisible = false
+    private var selectedAnnotationTool: AnnotationService.AnnotationType = .highlight
+    private var selectedAnnotationColor: UIColor = AnnotationService.highlightColors[0]
     private var isProcessing = false
 
     private let claudeService = ClaudeAPIService()
@@ -59,6 +64,11 @@ final class DocumentDetailViewController: UIViewController {
         toggleChatButton.setImage(UIImage(systemName: "bubble.left.and.bubble.right"), for: .normal)
         toggleChatButton.addTarget(self, action: #selector(toggleChat), for: .touchUpInside)
 
+        let annotateBtn = UIButton(type: .system)
+        annotateBtn.setImage(UIImage(systemName: "pencil.line"), for: .normal)
+        annotateBtn.addTarget(self, action: #selector(toggleAnnotation), for: .touchUpInside)
+        annotateButton = UIBarButtonItem(customView: annotateBtn)
+
         let shareButton = UIBarButtonItem(
             image: UIImage(systemName: "square.and.arrow.up"),
             style: .plain,
@@ -73,7 +83,7 @@ final class DocumentDetailViewController: UIViewController {
             action: #selector(showMoreOptions)
         )
 
-        navigationItem.rightBarButtonItems = [moreButton, shareButton, UIBarButtonItem(customView: toggleChatButton)]
+        navigationItem.rightBarButtonItems = [moreButton, shareButton, UIBarButtonItem(customView: toggleChatButton), annotateButton]
     }
 
     private func setupPDFView() {
@@ -265,6 +275,35 @@ final class DocumentDetailViewController: UIViewController {
                 for: .normal
             )
         }
+    }
+
+    @objc private func toggleAnnotation() {
+        isAnnotationMode.toggle()
+        HapticManager.shared.mediumImpact()
+
+        if isAnnotationMode {
+            showAnnotationToolbar()
+            annotateButton.customView?.tintColor = .systemBlue
+        } else {
+            dismissAnnotationToolbar()
+            annotateButton.customView?.tintColor = .label
+        }
+    }
+
+    private func showAnnotationToolbar() {
+        let toolbarVC = AnnotationToolbarViewController()
+        toolbarVC.delegate = self
+
+        let nav = UINavigationController(rootViewController: toolbarVC)
+        if let sheet = nav.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+        }
+        present(nav, animated: true)
+    }
+
+    private func dismissAnnotationToolbar() {
+        // annotation mode sync
     }
 
     @objc private func shareDocument() {
@@ -506,5 +545,89 @@ final class ChatMessageCell: UITableViewCell {
         for constraint in contentView.constraints {
             constraint.isActive = false
         }
+    }
+}
+
+// MARK: - AnnotationToolbarDelegate
+
+extension DocumentDetailViewController: AnnotationToolbarDelegate {
+    func annotationToolbarDidSelectTool(_ tool: AnnotationService.AnnotationType) {
+        selectedAnnotationTool = tool
+        // annotation mode enabled
+    }
+
+    func annotationToolbarDidSelectColor(_ color: UIColor) {
+        selectedAnnotationColor = color
+    }
+
+    func annotationToolbarDidRequestSignature() {
+        let sigVC = SignatureViewController()
+        sigVC.delegate = self
+        let nav = UINavigationController(rootViewController: sigVC)
+        nav.modalPresentationStyle = .formSheet
+        present(nav, animated: true)
+    }
+
+    func annotationToolbarDidRequestUndo() {
+        guard let page = pdfView.currentPage else { return }
+        AnnotationService().undoLastAnnotation(type: selectedAnnotationTool, on: page)
+        HapticManager.shared.lightImpact()
+    }
+
+    func annotationToolbarDidRequestClear() {
+        guard let page = pdfView.currentPage else { return }
+        AnnotationService().removeAllAnnotations(from: page)
+        HapticManager.shared.success()
+    }
+
+    func annotationToolbarDidFinish() {
+        dismiss(animated: true)
+        isAnnotationMode = false
+        annotateButton.customView?.tintColor = .label
+        // annotation behavior reset
+        saveAnnotatedDocument()
+    }
+
+    private func saveAnnotatedDocument() {
+        guard let pdfDoc = pdfView.document else { return }
+
+        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let pdfDir = documentsPath.appendingPathComponent("PDFs")
+        try? FileManager.default.createDirectory(at: pdfDir, withIntermediateDirectories: true)
+
+        let fileName = "\(UUID().uuidString).pdf"
+        let destURL = pdfDir.appendingPathComponent(fileName)
+
+        if pdfDoc.write(to: destURL) {
+            let ctx = AppDelegate.shared.managedObjectContext
+            let doc = CDDocument(context: ctx)
+            doc.id = UUID()
+            doc.title = (document.title ?? "Untitled") + " (annotated)"
+            doc.pdfFileName = destURL.lastPathComponent
+            doc.pageCount = Int32(pdfDoc.pageCount)
+            doc.createdAt = Date()
+            doc.lastOpenedAt = Date()
+            doc.isFavorite = false
+            doc.isSecured = false
+            doc.isProcessed = document.isProcessed
+            doc.fullText = document.fullText
+            try? ctx.save()
+            HapticManager.shared.success()
+        }
+    }
+}
+
+// MARK: - SignatureViewControllerDelegate
+
+extension DocumentDetailViewController: SignatureViewControllerDelegate {
+    func signatureDidFinish(drawing: PKDrawing) {
+        guard let page = pdfView.currentPage else { return }
+        let position = CGPoint(x: 50, y: page.bounds(for: .mediaBox).height - 100)
+        _ = AnnotationService().addDrawingSignature(drawing: drawing, at: position, on: page)
+        HapticManager.shared.success()
+    }
+
+    func signatureDidCancel() {
+        // No action needed
     }
 }
