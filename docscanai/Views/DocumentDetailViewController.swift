@@ -8,24 +8,30 @@ final class DocumentDetailViewController: UIViewController {
 
     private let document: CDDocument
 
+    // MARK: - Properties
+
     private var pdfView: PDFView!
-    private var chatContainerView: UIView!
-    private var chatTableView: UITableView!
-    private var chatInputContainer: UIView!
-    private var chatTextField: UITextField!
-    private var sendButton: UIButton!
-    private var loadingIndicator: UIActivityIndicatorView!
-    private var summaryButton: UIButton!
-    private var translateButton: UIButton!
     private var toggleChatButton: UIButton!
     private var annotateButton: UIBarButtonItem!
     private var isAnnotationMode = false
-
-    private var messages: [ChatMessageItem] = []
     private var isChatVisible = false
     private var selectedAnnotationTool: AnnotationService.AnnotationType = .highlight
     private var selectedAnnotationColor: UIColor = AnnotationService.highlightColors[0]
-    private var isProcessing = false
+
+    // Chat panel (extracted)
+    private var chatPanelVC: AIChatPanelViewController!
+    private var chatContainerView: UIView!
+    private var chatContainerTrailingConstraint: NSLayoutConstraint!
+
+    // Keep for now - will migrate to AIChatPanel later
+    private var messages: [ChatMessageItem] = []
+    private var chatTableView: UITableView!
+    private var chatTextField: UITextField!
+    private var chatInputContainer: UIView!
+    private var loadingIndicator: UIActivityIndicatorView!
+    private var sendButton: UIButton!
+    private var summaryButton: UIButton!
+    private var translateButton: UIButton!
 
     private let claudeService = ClaudeAPIService()
 
@@ -42,7 +48,6 @@ final class DocumentDetailViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         loadPDF()
-        loadChatHistory()
 
         // Update last opened
         document.lastOpenedAt = Date()
@@ -239,8 +244,7 @@ final class DocumentDetailViewController: UIViewController {
     }
 
     private func loadPDF() {
-        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let pdfURL = documentsPath.appendingPathComponent("PDFs").appendingPathComponent(document.pdfFileName ?? "")
+        let pdfURL = FileManager.pdfDirectoryURL.appendingPathComponent(document.pdfFileName ?? "")
         if let pdfDoc = PDFDocument(url: pdfURL) {
             pdfView.document = pdfDoc
         }
@@ -310,8 +314,7 @@ final class DocumentDetailViewController: UIViewController {
 
     @objc private func shareDocument() {
         HapticManager.shared.lightImpact()
-        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let pdfURL = documentsPath.appendingPathComponent("PDFs").appendingPathComponent(document.pdfFileName ?? "")
+        let pdfURL = FileManager.pdfDirectoryURL.appendingPathComponent(document.pdfFileName ?? "")
 
         let activityVC = UIActivityViewController(activityItems: [pdfURL], applicationActivities: nil)
         if let popover = activityVC.popoverPresentationController {
@@ -516,8 +519,7 @@ extension DocumentDetailViewController: AnnotationToolbarDelegate {
     private func saveAnnotatedDocument() {
         guard let pdfDoc = pdfView.document else { return }
 
-        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let pdfDir = documentsPath.appendingPathComponent("PDFs")
+        let pdfDir = FileManager.pdfDirectoryURL
         try? FileManager.default.createDirectory(at: pdfDir, withIntermediateDirectories: true)
 
         let fileName = "\(UUID().uuidString).pdf"
