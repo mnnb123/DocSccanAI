@@ -71,6 +71,20 @@ targets:
       - target: DocScanAI
         embed: false
 
+  DocScanAITests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: Tests
+    settings:
+      base:
+        INFOPLIST_FILE: Tests/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.docscanai.app.tests
+        TEST_HOST: $(BUILT_PRODUCTS_DIR)/DocScanAI.app/DocScanAI
+        BUNDLE_LOADER: $(TEST_HOST)
+    dependencies:
+      - target: DocScanAI
+
 schemes:
   DocScanAI:
     build:
