@@ -26,6 +26,9 @@ targets:
       - path: Models
       - path: Views
       - path: Services
+      - path: DesignSystem
+      - path: Extensions
+      - path: Core
     resources:
       - path: Assets.xcassets
     settings:

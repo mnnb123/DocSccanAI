@@ -7,15 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0023CF6F8865CAC65F1FF231 /* DocumentListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AABA69C6CA924978876E3EF /* DocumentListCell.swift */; };
+		07BFD7284871BBF5DA0F4A81 /* DSButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7DE7BF3C9BD310D8BE5876C /* DSButton.swift */; };
 		0A8DFD555138586953C3D048 /* DocScanAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96085602DE00794B07DFC577 /* DocScanAIApp.swift */; };
+		0EF90AE890F0F3396B527974 /* FileManager+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3F2DF56A47A36B1A186DCD /* FileManager+Ext.swift */; };
 		10E68EDDF4196F43085AD128 /* DocScanAIWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD25A43F6FB94DED8869FD8 /* DocScanAIWidget.swift */; };
+		1228D21C1AB1316F7794E1A2 /* DocumentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA46A55356F07ABB11FE514 /* DocumentRepository.swift */; };
 		12C0AEA6289BDD4212CCEBF9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1D796250C9B39A07CF8BC4 /* ContentView.swift */; };
 		18E55667EFE55EFF61F57A0D /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF1F289AAB1FC75BA7A9C55A /* SubscriptionManager.swift */; };
+		22AAC556956271AD4442AB82 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AC28AE5899D2E790F61189A /* Typography.swift */; };
 		2CF17D30D94F1F38B78AD214 /* ScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C77E3D704413BB0F4C6F430 /* ScanViewController.swift */; };
 		2D6AAD8E0127374CDE613C46 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A6C56B82005C943A2F7E77 /* LibraryViewController.swift */; };
+		30A12476B4EE4845BD38F671 /* DocumentGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC8D96E9DE9727AC304F7CE /* DocumentGridCell.swift */; };
 		34DD5EBE84B7CF348B902A98 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF20D4F93C470DC06A82C1C /* SignatureViewController.swift */; };
+		47BE0F96240B0C91794BA9E9 /* ColorTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CE71BA919C60D4EDDE3CB /* ColorTokens.swift */; };
 		4F0A0169949130CB7B6CD586 /* ClaudeAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4872D09DBBB5C5B4A0BDB4E /* ClaudeAPIService.swift */; };
 		562C3D3E0DF441BFD7E9EF6B /* ScanService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA01AF3076A9BEF16B436C2 /* ScanService.swift */; };
+		56497FAC2731B6DE45B79306 /* LoadingOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09FB0CB0CA14201A0C63BD1 /* LoadingOverlay.swift */; };
+		5A396E0CC5373C4975BE6B29 /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4629F7CAE853D60600C3D1F9 /* ImageUtils.swift */; };
 		5E6D0BDE4653C0F2F3B798C2 /* AnnotationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A32E1809DD48D26E9A51A127 /* AnnotationService.swift */; };
 		73E5FF1AB7CBFC41E0B7DC38 /* AIProcessingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B34BA686FB4B7ADBBAEF96A9 /* AIProcessingViewController.swift */; };
 		74291EF71EA150C275A88BEE /* OCRResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DF4E12176F4A25ABF43D105 /* OCRResult.swift */; };
@@ -23,9 +32,13 @@
 		80E5668523E1C415BFDA44C7 /* OCRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B032F5DE7F73060293C8C2B /* OCRService.swift */; };
 		9A693D924153A0CE755E0080 /* SubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26663D14E1FFE8573D623404 /* SubscriptionViewController.swift */; };
 		9BCBFC0DCD96C1A6AA891705 /* DocScanAI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 256814D5E20B9F3B4360D5C3 /* DocScanAI.xcdatamodeld */; };
+		9C8805BE91B428814FD676D1 /* OpenAIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1737B87A48DD4621949D0310 /* OpenAIService.swift */; };
 		ABCA2F6E6DAA77F0846E5521 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03D6B4F4222B424B7C1147BF /* HapticManager.swift */; };
+		AD382F9B0E980D8F38891354 /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3126193D33DA5F12681814 /* AlertPresenter.swift */; };
 		AEE4F607DA7055BE31F4ED39 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295FC8A69C67265487A806EB /* SettingsViewController.swift */; };
+		B7603B623181E40B3A9B6D9F /* Spacing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0003C856812880AECF4F4FCC /* Spacing.swift */; };
 		B914D9AE4C29CC44BB48168C /* BiometricLockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62861E91A4A8AD6AFE9870B0 /* BiometricLockManager.swift */; };
+		C1055B2975A69E01F644EB25 /* DateFormatter+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F059CCB4215515427B9EFD3 /* DateFormatter+Ext.swift */; };
 		C26FE1C26B4CBA2CB3FC8F46 /* DocumentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C813EE87629F6C24770E31A /* DocumentDetailViewController.swift */; };
 		C8A668045EA7A132ECC5FBDD /* ScanPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E560225FF46C1A7F6C762D1 /* ScanPreviewViewController.swift */; };
 		D9C539B17BB2F5826A50FA3E /* DocumentAIProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD8D51EDA4289C6F2068DB0 /* DocumentAIProcessor.swift */; };
@@ -44,9 +57,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0003C856812880AECF4F4FCC /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
 		03D6B4F4222B424B7C1147BF /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		0BF20D4F93C470DC06A82C1C /* SignatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
+		1737B87A48DD4621949D0310 /* OpenAIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenAIService.swift; sourceTree = "<group>"; };
+		1AABA69C6CA924978876E3EF /* DocumentListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListCell.swift; sourceTree = "<group>"; };
 		1C1D796250C9B39A07CF8BC4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		1C3126193D33DA5F12681814 /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
 		1DF4E12176F4A25ABF43D105 /* OCRResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OCRResult.swift; sourceTree = "<group>"; };
 		26663D14E1FFE8573D623404 /* SubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionViewController.swift; sourceTree = "<group>"; };
 		27A6C56B82005C943A2F7E77 /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
@@ -54,9 +71,14 @@
 		2FD25A43F6FB94DED8869FD8 /* DocScanAIWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocScanAIWidget.swift; sourceTree = "<group>"; };
 		3907B277CAB233D323BD83F4 /* AnnotationToolbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationToolbarViewController.swift; sourceTree = "<group>"; };
 		3C813EE87629F6C24770E31A /* DocumentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDetailViewController.swift; sourceTree = "<group>"; };
+		3CC8D96E9DE9727AC304F7CE /* DocumentGridCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentGridCell.swift; sourceTree = "<group>"; };
 		3E560225FF46C1A7F6C762D1 /* ScanPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanPreviewViewController.swift; sourceTree = "<group>"; };
+		4629F7CAE853D60600C3D1F9 /* ImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
 		4FA01AF3076A9BEF16B436C2 /* ScanService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanService.swift; sourceTree = "<group>"; };
 		62861E91A4A8AD6AFE9870B0 /* BiometricLockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricLockManager.swift; sourceTree = "<group>"; };
+		6D3F2DF56A47A36B1A186DCD /* FileManager+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Ext.swift"; sourceTree = "<group>"; };
+		6F059CCB4215515427B9EFD3 /* DateFormatter+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Ext.swift"; sourceTree = "<group>"; };
+		7AC28AE5899D2E790F61189A /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
 		7C77E3D704413BB0F4C6F430 /* ScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanViewController.swift; sourceTree = "<group>"; };
 		892B92599C0A7AD5B83793FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8A40DE87BD5C93AC17C88B75 /* DocScanAI.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = DocScanAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,12 +86,16 @@
 		950758A248280F58921DB129 /* DocumentModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentModels.swift; sourceTree = "<group>"; };
 		96085602DE00794B07DFC577 /* DocScanAIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocScanAIApp.swift; sourceTree = "<group>"; };
 		9AD8D51EDA4289C6F2068DB0 /* DocumentAIProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentAIProcessor.swift; sourceTree = "<group>"; };
+		9CA46A55356F07ABB11FE514 /* DocumentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentRepository.swift; sourceTree = "<group>"; };
 		9EF9F4C133DA497EE96FEC22 /* DocScanAIWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = DocScanAIWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A32E1809DD48D26E9A51A127 /* AnnotationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnotationService.swift; sourceTree = "<group>"; };
 		B0A4FAE5DC90704CDE86F44E /* DocScanAIWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DocScanAIWidget.entitlements; sourceTree = "<group>"; };
 		B34BA686FB4B7ADBBAEF96A9 /* AIProcessingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AIProcessingViewController.swift; sourceTree = "<group>"; };
 		B4872D09DBBB5C5B4A0BDB4E /* ClaudeAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClaudeAPIService.swift; sourceTree = "<group>"; };
+		C09FB0CB0CA14201A0C63BD1 /* LoadingOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlay.swift; sourceTree = "<group>"; };
+		C41CE71BA919C60D4EDDE3CB /* ColorTokens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTokens.swift; sourceTree = "<group>"; };
 		C8F4F341CCF70B732740ABDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D7DE7BF3C9BD310D8BE5876C /* DSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSButton.swift; sourceTree = "<group>"; };
 		DF1F289AAB1FC75BA7A9C55A /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		EA6AA76981AE1CFE4FE0157D /* DocScanAI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DocScanAI.xcdatamodel; sourceTree = "<group>"; };
 		EC5163E8AA337ACF50DD2755 /* DocScanAI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DocScanAI.entitlements; sourceTree = "<group>"; };
@@ -77,6 +103,33 @@
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
+		0C66C5153A1191B2864F3A51 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4629F7CAE853D60600C3D1F9 /* ImageUtils.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		0FB2B0F3B44D3D85603722DF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6F059CCB4215515427B9EFD3 /* DateFormatter+Ext.swift */,
+				6D3F2DF56A47A36B1A186DCD /* FileManager+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		32140C621AD71679AEA10A5C /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				C41CE71BA919C60D4EDDE3CB /* ColorTokens.swift */,
+				0003C856812880AECF4F4FCC /* Spacing.swift */,
+				7AC28AE5899D2E790F61189A /* Typography.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
 		46138BAC7BAB35627502698A /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,10 +157,20 @@
 				9AD8D51EDA4289C6F2068DB0 /* DocumentAIProcessor.swift */,
 				03D6B4F4222B424B7C1147BF /* HapticManager.swift */,
 				8B032F5DE7F73060293C8C2B /* OCRService.swift */,
+				1737B87A48DD4621949D0310 /* OpenAIService.swift */,
 				4FA01AF3076A9BEF16B436C2 /* ScanService.swift */,
 				DF1F289AAB1FC75BA7A9C55A /* SubscriptionManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		4F9C2FED2E10CCD6A32CBC7F /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				B89CFA17F6A7CC639B4061A9 /* Components */,
+				32140C621AD71679AEA10A5C /* Theme */,
+			);
+			path = DesignSystem;
 			sourceTree = "<group>";
 		};
 		65C951A85552E9275C257641 /* Models */ = {
@@ -132,6 +195,8 @@
 		76AC2386022A8AF346A1DC89 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				3CC8D96E9DE9727AC304F7CE /* DocumentGridCell.swift */,
+				1AABA69C6CA924978876E3EF /* DocumentListCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -145,16 +210,36 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B89CFA17F6A7CC639B4061A9 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				1C3126193D33DA5F12681814 /* AlertPresenter.swift */,
+				D7DE7BF3C9BD310D8BE5876C /* DSButton.swift */,
+				C09FB0CB0CA14201A0C63BD1 /* LoadingOverlay.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		BE9B8E7873706480C28AA240 = {
 			isa = PBXGroup;
 			children = (
 				F0008789903CB41EE06C4A1A /* App */,
+				F2ED3EF9B1C9705553F93D4A /* Core */,
+				4F9C2FED2E10CCD6A32CBC7F /* DesignSystem */,
 				67B6838BF7F2930334C0DC91 /* DocScanAIWidget */,
+				0FB2B0F3B44D3D85603722DF /* Extensions */,
 				65C951A85552E9275C257641 /* Models */,
 				4A80BF59C5F1B9B74D511760 /* Services */,
 				46138BAC7BAB35627502698A /* Views */,
 				90A574484FC8A5360BE30C65 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		CF42E9823B7B1F788A7BAC52 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		F0008789903CB41EE06C4A1A /* App */ = {
@@ -167,6 +252,24 @@
 				EC87AE1378B7F11D15116B35 /* SceneDelegate.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		F2ED3EF9B1C9705553F93D4A /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				FF6EE83F23A7AA14FB2B4D5F /* Repositories */,
+				CF42E9823B7B1F788A7BAC52 /* Services */,
+				0C66C5153A1191B2864F3A51 /* Utilities */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		FF6EE83F23A7AA14FB2B4D5F /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				9CA46A55356F07ABB11FE514 /* DocumentRepository.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,28 +357,41 @@
 			buildActionMask = 2147483647;
 			files = (
 				73E5FF1AB7CBFC41E0B7DC38 /* AIProcessingViewController.swift in Sources */,
+				AD382F9B0E980D8F38891354 /* AlertPresenter.swift in Sources */,
 				5E6D0BDE4653C0F2F3B798C2 /* AnnotationService.swift in Sources */,
 				EF4D3AF92405C8BC62A18067 /* AnnotationToolbarViewController.swift in Sources */,
 				B914D9AE4C29CC44BB48168C /* BiometricLockManager.swift in Sources */,
 				4F0A0169949130CB7B6CD586 /* ClaudeAPIService.swift in Sources */,
+				47BE0F96240B0C91794BA9E9 /* ColorTokens.swift in Sources */,
 				12C0AEA6289BDD4212CCEBF9 /* ContentView.swift in Sources */,
+				07BFD7284871BBF5DA0F4A81 /* DSButton.swift in Sources */,
+				C1055B2975A69E01F644EB25 /* DateFormatter+Ext.swift in Sources */,
 				9BCBFC0DCD96C1A6AA891705 /* DocScanAI.xcdatamodeld in Sources */,
 				0A8DFD555138586953C3D048 /* DocScanAIApp.swift in Sources */,
 				D9C539B17BB2F5826A50FA3E /* DocumentAIProcessor.swift in Sources */,
 				C26FE1C26B4CBA2CB3FC8F46 /* DocumentDetailViewController.swift in Sources */,
+				30A12476B4EE4845BD38F671 /* DocumentGridCell.swift in Sources */,
+				0023CF6F8865CAC65F1FF231 /* DocumentListCell.swift in Sources */,
 				7D3324BF30976A098352C927 /* DocumentModels.swift in Sources */,
+				1228D21C1AB1316F7794E1A2 /* DocumentRepository.swift in Sources */,
+				0EF90AE890F0F3396B527974 /* FileManager+Ext.swift in Sources */,
 				ABCA2F6E6DAA77F0846E5521 /* HapticManager.swift in Sources */,
+				5A396E0CC5373C4975BE6B29 /* ImageUtils.swift in Sources */,
 				2D6AAD8E0127374CDE613C46 /* LibraryViewController.swift in Sources */,
+				56497FAC2731B6DE45B79306 /* LoadingOverlay.swift in Sources */,
 				74291EF71EA150C275A88BEE /* OCRResult.swift in Sources */,
 				80E5668523E1C415BFDA44C7 /* OCRService.swift in Sources */,
+				9C8805BE91B428814FD676D1 /* OpenAIService.swift in Sources */,
 				C8A668045EA7A132ECC5FBDD /* ScanPreviewViewController.swift in Sources */,
 				562C3D3E0DF441BFD7E9EF6B /* ScanService.swift in Sources */,
 				2CF17D30D94F1F38B78AD214 /* ScanViewController.swift in Sources */,
 				E4194AF7833778B6E555E4EB /* SceneDelegate.swift in Sources */,
 				AEE4F607DA7055BE31F4ED39 /* SettingsViewController.swift in Sources */,
 				34DD5EBE84B7CF348B902A98 /* SignatureViewController.swift in Sources */,
+				B7603B623181E40B3A9B6D9F /* Spacing.swift in Sources */,
 				18E55667EFE55EFF61F57A0D /* SubscriptionManager.swift in Sources */,
 				9A693D924153A0CE755E0080 /* SubscriptionViewController.swift in Sources */,
+				22AAC556956271AD4442AB82 /* Typography.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
