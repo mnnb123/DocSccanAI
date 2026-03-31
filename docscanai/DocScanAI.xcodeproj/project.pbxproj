@@ -20,6 +20,7 @@
 		2D6AAD8E0127374CDE613C46 /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A6C56B82005C943A2F7E77 /* LibraryViewController.swift */; };
 		30A12476B4EE4845BD38F671 /* DocumentGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CC8D96E9DE9727AC304F7CE /* DocumentGridCell.swift */; };
 		34DD5EBE84B7CF348B902A98 /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF20D4F93C470DC06A82C1C /* SignatureViewController.swift */; };
+		430FDBF8493DF843C018E4C2 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10FE5E07F9D562683396F4B /* KeychainHelper.swift */; };
 		47BE0F96240B0C91794BA9E9 /* ColorTokens.swift in Sources */ = {isa = PBXBuildFile; fileRef = C41CE71BA919C60D4EDDE3CB /* ColorTokens.swift */; };
 		4F0A0169949130CB7B6CD586 /* ClaudeAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4872D09DBBB5C5B4A0BDB4E /* ClaudeAPIService.swift */; };
 		562C3D3E0DF441BFD7E9EF6B /* ScanService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA01AF3076A9BEF16B436C2 /* ScanService.swift */; };
@@ -45,6 +46,7 @@
 		E3E3759B6619662672A39359 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6E1AAC4BB4EA005703EAE2 /* ChatMessageCell.swift */; };
 		E4194AF7833778B6E555E4EB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC87AE1378B7F11D15116B35 /* SceneDelegate.swift */; };
 		E937D0D31C1FE586F00DD443 /* TypeSignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94896D923F028AB9AECD87B /* TypeSignatureViewController.swift */; };
+		EA085ADD1342523E345CBAEC /* AccessibilityHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBBD6ED694A0CE6B250EA66 /* AccessibilityHelpers.swift */; };
 		EF4D3AF92405C8BC62A18067 /* AnnotationToolbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3907B277CAB233D323BD83F4 /* AnnotationToolbarViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -100,10 +102,12 @@
 		C8F4F341CCF70B732740ABDC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C94896D923F028AB9AECD87B /* TypeSignatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeSignatureViewController.swift; sourceTree = "<group>"; };
 		D7DE7BF3C9BD310D8BE5876C /* DSButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DSButton.swift; sourceTree = "<group>"; };
+		DBBBD6ED694A0CE6B250EA66 /* AccessibilityHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityHelpers.swift; sourceTree = "<group>"; };
 		DF1F289AAB1FC75BA7A9C55A /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		EA6AA76981AE1CFE4FE0157D /* DocScanAI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DocScanAI.xcdatamodel; sourceTree = "<group>"; };
 		EC5163E8AA337ACF50DD2755 /* DocScanAI.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DocScanAI.entitlements; sourceTree = "<group>"; };
 		EC87AE1378B7F11D15116B35 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F10FE5E07F9D562683396F4B /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -111,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				4629F7CAE853D60600C3D1F9 /* ImageUtils.swift */,
+				F10FE5E07F9D562683396F4B /* KeychainHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -219,6 +224,7 @@
 		B89CFA17F6A7CC639B4061A9 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				DBBBD6ED694A0CE6B250EA66 /* AccessibilityHelpers.swift */,
 				1C3126193D33DA5F12681814 /* AlertPresenter.swift */,
 				D7DE7BF3C9BD310D8BE5876C /* DSButton.swift */,
 				C09FB0CB0CA14201A0C63BD1 /* LoadingOverlay.swift */,
@@ -363,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				73E5FF1AB7CBFC41E0B7DC38 /* AIProcessingViewController.swift in Sources */,
+				EA085ADD1342523E345CBAEC /* AccessibilityHelpers.swift in Sources */,
 				AD382F9B0E980D8F38891354 /* AlertPresenter.swift in Sources */,
 				5E6D0BDE4653C0F2F3B798C2 /* AnnotationService.swift in Sources */,
 				EF4D3AF92405C8BC62A18067 /* AnnotationToolbarViewController.swift in Sources */,
@@ -384,6 +391,7 @@
 				0EF90AE890F0F3396B527974 /* FileManager+Ext.swift in Sources */,
 				ABCA2F6E6DAA77F0846E5521 /* HapticManager.swift in Sources */,
 				5A396E0CC5373C4975BE6B29 /* ImageUtils.swift in Sources */,
+				430FDBF8493DF843C018E4C2 /* KeychainHelper.swift in Sources */,
 				2D6AAD8E0127374CDE613C46 /* LibraryViewController.swift in Sources */,
 				56497FAC2731B6DE45B79306 /* LoadingOverlay.swift in Sources */,
 				74291EF71EA150C275A88BEE /* OCRResult.swift in Sources */,

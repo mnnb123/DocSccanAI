@@ -60,6 +60,7 @@ final class LibraryViewController: UIViewController {
         collectionView.register(DocumentGridCell.self, forCellWithReuseIdentifier: DocumentGridCell.identifier)
         collectionView.register(DocumentListCell.self, forCellWithReuseIdentifier: DocumentListCell.identifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.accessibilityLabel = "Danh sách tài liệu"
 
         // Empty state
         emptyStateView = createEmptyStateView()
@@ -100,6 +101,7 @@ final class LibraryViewController: UIViewController {
             target: self,
             action: #selector(createFolder)
         )
+        addButton.configureAccessibility(label: "Tạo thư mục mới", hint: "Nhấn để tạo một thư mục mới")
 
         let moreButton = UIBarButtonItem(
             image: UIImage(systemName: "ellipsis.circle"),
@@ -107,6 +109,7 @@ final class LibraryViewController: UIViewController {
             target: self,
             action: #selector(showMoreOptions)
         )
+        moreButton.configureAccessibility(label: "Tùy chọn thêm", hint: "Nhấn để xem các tùy chọn khác")
 
         navigationItem.rightBarButtonItems = [moreButton, addButton]
     }

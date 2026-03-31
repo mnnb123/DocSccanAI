@@ -114,6 +114,11 @@ final class DocumentListCell: UICollectionViewCell {
         titleLabel.text = document.title ?? "Untitled"
         metaLabel.text = "\(document.pageCount) trang • \((document.lastOpenedAt ?? Date()).formattedMonthDay)"
         starImageView.isHidden = !document.isFavorite
+
+        // Accessibility
+        let favoriteStatus = document.isFavorite ? ", đã đánh dấu yêu thích" : ""
+        accessibilityLabel = "\(document.title ?? "Tài liệu"), \(document.pageCount) trang, ngày \(document.lastOpenedAt?.formattedMonthDay ?? "không rõ")\(favoriteStatus)"
+        accessibilityTraits = .button
     }
 
     // MARK: - Reuse
@@ -123,5 +128,6 @@ final class DocumentListCell: UICollectionViewCell {
         titleLabel.text = nil
         metaLabel.text = nil
         starImageView.isHidden = true
+        accessibilityLabel = nil
     }
 }

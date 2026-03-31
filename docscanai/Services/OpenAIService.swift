@@ -46,9 +46,14 @@ actor OpenAIService {
     init(config: Config? = nil) {
         if let config = config {
             self.config = config
-        } else if let savedKey = UserDefaults.standard.string(forKey: "openaiAPIKey"),
+        } else if let savedKey = KeychainHelper.shared.read(.openaiAPIKey),
                   !savedKey.isEmpty {
             self.config = Config(apiKey: savedKey)
+        } else if let userDefaultsKey = UserDefaults.standard.string(forKey: "openaiAPIKey"),
+                  !userDefaultsKey.isEmpty {
+            // Migrate from UserDefaults to Keychain
+            KeychainHelper.shared.save(userDefaultsKey, for: .openaiAPIKey)
+            self.config = Config(apiKey: userDefaultsKey)
         } else {
             self.config = Config.builtIn
         }

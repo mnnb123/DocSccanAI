@@ -45,9 +45,14 @@ actor ClaudeAPIService {
     init(config: Config? = nil) {
         if let config = config {
             self.config = config
-        } else if let savedKey = UserDefaults.standard.string(forKey: "claudeAPIKey"),
+        } else if let savedKey = KeychainHelper.shared.read(.claudeAPIKey),
                   !savedKey.isEmpty {
             self.config = Config(apiKey: savedKey)
+        } else if let userDefaultsKey = UserDefaults.standard.string(forKey: "claudeAPIKey"),
+                  !userDefaultsKey.isEmpty {
+            // Migrate from UserDefaults to Keychain
+            KeychainHelper.shared.save(userDefaultsKey, for: .claudeAPIKey)
+            self.config = Config(apiKey: userDefaultsKey)
         } else {
             self.config = Config.builtIn
         }

@@ -95,9 +95,9 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         case .aiConfig:
             cell.accessoryType = .disclosureIndicator
             if indexPath.row == 0 {
-                cell.detailTextLabel?.text = UserDefaults.standard.string(forKey: "claudeAPIKey")?.isEmpty == false ? "Đã cài đặt" : "Đã cài đặt"
+                cell.detailTextLabel?.text = KeychainHelper.shared.exists(.claudeAPIKey) ? "Đã cài đặt" : "Đã cài đặt"
             } else {
-                cell.detailTextLabel?.text = UserDefaults.standard.string(forKey: "openaiAPIKey")?.isEmpty == false ? "Đã cài đặt" : "Chưa cài đặt"
+                cell.detailTextLabel?.text = KeychainHelper.shared.exists(.openaiAPIKey) ? "Đã cài đặt" : "Chưa cài đặt"
             }
 
         case .security:
@@ -156,16 +156,17 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
 
     private func showAPIKeyAlert(provider: String, keyName: String, url: String) {
         let placeholder = provider == "Claude" ? "sk-ant-..." : "sk-proj-..."
+        let keychainKey: KeychainHelper.Key = provider == "Claude" ? .claudeAPIKey : .openaiAPIKey
         let alert = UIAlertController(title: "\(provider) API Key", message: "Nhập API key từ \(url)", preferredStyle: .alert)
         alert.addTextField { tf in
             tf.placeholder = placeholder
             tf.isSecureTextEntry = true
-            tf.text = UserDefaults.standard.string(forKey: keyName)
+            tf.text = KeychainHelper.shared.read(keychainKey)
         }
         alert.addAction(UIAlertAction(title: "Hủy", style: .cancel))
         alert.addAction(UIAlertAction(title: "Lưu", style: .default) { [weak self] _ in
             if let key = alert.textFields?.first?.text {
-                UserDefaults.standard.set(key, forKey: keyName)
+                KeychainHelper.shared.save(key, for: keychainKey)
                 HapticManager.shared.success()
                 self?.tableView.reloadData()
             }
